@@ -91,8 +91,7 @@ t_vec3 vdivide(t_vec3 vec, double t)
     vec.x *= 1 / t;
     vec.y *= 1 / t;
     vec.z *= 1 / t;
-
-    return vec;
+    return (vec);
 }
 
 double vdot(t_vec3 vec, t_vec3 vec2)
