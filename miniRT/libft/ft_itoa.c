@@ -3,7 +3,7 @@
 static int	ft_memorylen(int n)
 {
 	long long	num;
-	int	len;
+	int			len;
 
 	num = n;
 	len = 0;
