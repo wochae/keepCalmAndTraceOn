@@ -1,9 +1,9 @@
 #include "libft.h"
 
-static int ft_memorylen(int n)
+static int	ft_memorylen(int n)
 {
-	long long num;
-	int len;
+	long long	num;
+	int	len;
 
 	num = n;
 	len = 0;
@@ -22,12 +22,12 @@ static int ft_memorylen(int n)
 	return (len);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int len;
-	char *str;
-	size_t i;
-	long long num;
+	int			len;
+	char		*str;
+	size_t		i;
+	long long	num;
 
 	num = n;
 	len = ft_memorylen(n);

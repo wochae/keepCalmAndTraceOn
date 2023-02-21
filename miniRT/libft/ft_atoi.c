@@ -1,9 +1,9 @@
 #include "libft.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int minus;
-	int ret;
+	int	minus;
+	int	ret;
 
 	ret = 0;
 	minus = 1;
@@ -22,7 +22,7 @@ int ft_atoi(const char *str)
 		if ('0' <= *str && *str <= '9')
 			ret = ret * 10 + *str - '0';
 		else
-			break;
+			break ;
 		str++;
 	}
 	return (ret * minus);

@@ -1,4 +1,4 @@
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	if (97 <= c && c <= 122)
 	{
