@@ -46,11 +46,13 @@ typedef struct s_camera
 {
 	t_point3		orig;
 	t_point3		left_bottom;
+	t_vec3			dir;
 	t_vec3			horizontal;
 	t_vec3			vertical;
 	double			viewport_w;
 	double			viewport_h;
 	double			focal_len;
+	double			fov;
 }	t_camera;
 
 typedef struct s_canvas
