@@ -70,7 +70,7 @@ typedef struct s_sphere
 	t_point3	center;
 	double		radius; //->diameter을 반으로 나눠서
 	double 		radius_d;
-    t_color3    sp_rgb;
+	t_color3    sp_rgb;
 }	t_sphere;
 
 typedef struct s_light
@@ -83,7 +83,7 @@ typedef struct s_light
 typedef struct s_ambient
 {
 	t_color3	amount;
-	double		ambient_ratio;
+	double		ratio;
 }	t_ambient;
 
 typedef struct s_info
@@ -98,7 +98,7 @@ typedef struct s_info
 //	t_canvas		canvas; // wht using for?
 	t_cam			cam;
 	t_object		*objects; //object->element에 오브젝트를 통째로 담아야됨! 즉, object->element가 오브젝트 연결리스트임
-	t_object		*lights;
+	t_light         light;
 	t_ambient		ambient;
 	t_ray			ray;
 //	t_hit_record	rec;

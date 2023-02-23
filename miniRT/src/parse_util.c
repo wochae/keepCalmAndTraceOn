@@ -31,3 +31,19 @@ t_color3	parse_color(char *str)
 	color = (t_color3){color.x / 255.0, color.y / 255.0, color.z / 255.0};
 	return (color);
 }
+
+t_point3 parse_pt(char *str)
+{
+	char		**pts;
+	t_point3	pt;
+
+	check_sep(str, ',', 2);
+	pts = ft_split(str, ',');
+	if (!pts)
+		ft_error("memory allocation's failed");
+	if (ft_strslen(pts) != 3)
+		ft_error("wrong input : point must have 3 numbers");
+	pt = ((t_point3){ft_atod(pts[0]), ft_atod(pts[1]), ft_atod(pts[2])});
+	ft_free_strs(pts);
+	return (pt);
+}
