@@ -64,12 +64,12 @@ static void	parse_a_line(char *line, int *flag, t_info *info)
 		parse_camera(args, info);
 	else if (!ft_strcmp(args[0], "L"))
 		parse_light(args, info);
-	else if (!ft_strcmp(args[0], "sp"))
-		parse_sphere(args, info);
-	else if (!ft_strcmp(args[0], "pl"))
-		parse_plane(args, info);
-	else if (!ft_strcmp(args[0], "cy"))
-		parse_cylinder(args, info);
+	// else if (!ft_strcmp(args[0], "sp"))
+	// 	parse_sphere(args, info);
+	// else if (!ft_strcmp(args[0], "pl"))
+	// 	parse_plane(args, info);
+	// else if (!ft_strcmp(args[0], "cy"))
+	// 	parse_cylinder(args, info);
 	else
 		ft_error("wrong input : undefined identifier");
 	ft_free_strs(args);

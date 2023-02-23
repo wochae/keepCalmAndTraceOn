@@ -1,5 +1,12 @@
 #include "minirt.h"
 
+void	check_n_vec(t_point3 vec)
+{
+	if (vec.x < -1 || 1 < vec.x || vec.y < -1 || 1 < vec.y || \
+		vec.z < -1 || 1 < vec.z)
+		ft_error("normalized vector is not in range [-1, 1]");
+}
+
 static void	check_sep(char *str, char sep, int num)
 {
 	while (*str)
@@ -46,4 +53,15 @@ t_point3 parse_pt(char *str)
 	pt = ((t_point3){ft_atod(pts[0]), ft_atod(pts[1]), ft_atod(pts[2])});
 	ft_free_strs(pts);
 	return (pt);
+}
+
+t_point3	parse_n_vec(char *str)
+{
+	t_point3	vec;
+
+	vec = parse_pt(str);
+	if (vec.x < -1 || vec.x > 1 || vec.y < -1 || vec.y > 1 || \
+		vec.z < -1 || vec.z > 1)
+		ft_error("wrong input : vector must be -1 ~ 1");
+	return (vec);
 }
