@@ -8,7 +8,7 @@ void	check_file_extension(char *file)
 	size_t	len;
 
 	len = ft_strlen(file);
-	if (len < 3 || ft_strcmp(&file[len - 3], ".rt"))
+	if (len <= 3 || ft_strcmp(&file[len - 3], ".rt"))
 		ft_error("wrong file extension");
 }
 
@@ -34,6 +34,22 @@ void	read_file(char *file, char **content)
 	close(fd);
 }
 
+static void check_dup_info(char *key, int *flag)
+{
+	if (!ft_strcmp(key, "A") && *flag & AMB)
+		ft_error("'A' should be only one");
+	if (!ft_strcmp(key, "C") && *flag & CAM)
+		ft_error("'C' should be only one");
+	if (!ft_strcmp(key, "L") && *flag & LIT)
+		ft_error("'L' should be only one");
+	if (!ft_strcmp(key, "A"))
+		*flag |= AMB;
+	if (!ft_strcmp(key, "C"))
+		*flag |= CAM;
+	if (!ft_strcmp(key, "L"))
+		*flag |= LIT;	
+}
+
 static void	parse_a_line(char *line, int *flag, t_info *info)
 {
 	char	**args;
@@ -41,7 +57,7 @@ static void	parse_a_line(char *line, int *flag, t_info *info)
 	args = ft_split(line, ' ');
 	if (!args)
 		ft_error("alloc failed");
-	check_duplicate_info(args[0], flag);
+	check_dup_info(args[0], flag);
 	if (!ft_strcmp(args[0], "A"))
 		parse_ambient(args, info);
 	else if (!ft_strcmp(args[0], "C"))
@@ -73,5 +89,7 @@ void	parse_to_info(char *content, t_info *info)
 	free(content);
 	while (lines[++i])
 		parse_a_line(lines[i], &flag, info);
-	
+	ft_free_strs(lines);
+	if (flag ^ AMB ^ CAM ^ LIT)
+		ft_error("The major factors (A, C, L) are not sufficient.");	
 }
