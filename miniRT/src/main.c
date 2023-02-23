@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "minirt.h"
 #include "../mlx/mlx.h"
 
@@ -13,22 +14,22 @@ static void	parse(char *argv, t_info *info)
 	parse_to_info(content, info);
 }
 
-static void	ft_execute(t_info *info) // for testing
+static void	ft_execve(t_info *info) // for testing
 {
+	t_ambient amb = info->ambient;
 	t_cam cam = info->cam;
 	t_light light = info->light;
-	t_ambient amb = info->ambient;
-	printf("%d %d %d \n", cam.origin.x, cam.origin.y, cam.origin.z);
-	printf("%d %d %d \n", cam.looking_side.x,cam.looking_side.y,cam.looking_side.z);
-	printf("%d \n", cam.fov);
-	printf("%d %d %d \n", light.origin.x, light.origin.y, light.origin.z);
-	printf("%d %d %d \n", light.amount.x, light.amount.y, light.amount.z);
-	printf("%d \n", light.bright_ratio);
-	printf("%d %d %d \n", amb.amount.x, amb.amount.y, amb.amount.z);
-	printf("%d\n", amb.ratio);
+	printf("%f\n", amb.ratio);
+	printf("%f %f %f \n", amb.amount.x, amb.amount.y, amb.amount.z);
+	printf("%f %f %f \n", cam.origin.x, cam.origin.y, cam.origin.z);
+	printf("%f %f %f \n", cam.looking_side.x,cam.looking_side.y,cam.looking_side.z);
+	printf("%f \n", cam.fov);
+	printf("%f %f %f \n", light.origin.x, light.origin.y, light.origin.z);
+	printf("%f \n", light.bright_ratio);
+	printf("%f %f %f \n", light.amount.x, light.amount.y, light.amount.z);	
 }
 
-int	main(int argc, char *argv)
+int	main(int argc, char **argv)
 {
 	t_info	info;
 

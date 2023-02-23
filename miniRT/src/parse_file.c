@@ -27,10 +27,17 @@ void	read_file(char *file, char **content)
 		ft_memset(buf, 0, BUFFER_SIZE);
 		read_size = read(fd, buf, BUFFER_SIZE);
 		if (read_size < 0)
-			ft_error("malloc has been filed");
+			break ;
+		buf[read_size] = 0;
+		tmp = *content;
+		*content = ft_strjoin(*content, buf);
+		free(tmp);
+		if (!content)
+			ft_error("memory allocating failed");
 		if (read_size < BUFFER_SIZE)
 			break ;
 	}
+	ft_putstr_fd("read file good\n", 2);
 	close(fd);
 }
 
@@ -47,7 +54,8 @@ static void check_dup_info(char *key, int *flag)
 	if (!ft_strcmp(key, "C"))
 		*flag |= CAM;
 	if (!ft_strcmp(key, "L"))
-		*flag |= LIT;	
+		*flag |= LIT;
+	ft_putstr_fd("dup check good?\n", 2);
 }
 
 static void	parse_a_line(char *line, int *flag, t_info *info)
@@ -72,6 +80,7 @@ static void	parse_a_line(char *line, int *flag, t_info *info)
 	// 	parse_cylinder(args, info);
 	else
 		ft_error("wrong input : undefined identifier");
+	ft_putstr_fd("flag passed\n", 2);
 	ft_free_strs(args);
 }
 
@@ -83,13 +92,21 @@ void	parse_to_info(char *content, t_info *info)
 
 	i = -1;
 	flag = 0;
-	lines = ft_split(content, "\n");
+	lines = ft_split(content, '\n');
 	if (!lines)
 		ft_error("alloc failed");
 	free(content);
 	while (lines[++i])
 		parse_a_line(lines[i], &flag, info);
 	ft_free_strs(lines);
-	if (flag ^ AMB ^ CAM ^ LIT)
-		ft_error("The major factors (A, C, L) are not sufficient.");	
+	int v = (flag ^ AMB ^ CAM ^ LIT);
+	ft_putnbr_fd(flag, 2);
+	ft_putnbr_fd(AMB, 2);
+	ft_putnbr_fd(CAM, 2);
+	ft_putnbr_fd(LIT, 2);
+	ft_putnbr_fd(v, 2);
+	ft_putendl_fd("", 2);
+	
+	// if (flag ^ AMB ^ CAM ^ LIT)
+	// 	ft_error("The major factors (A, C, L) are not sufficient.");	
 }

@@ -1,81 +1,67 @@
 #include "libft.h"
 
-int	find_it(char const *s, char c)
+static size_t	ft_count_strs(char const *s, char c)
 {
-	int	n;
-
-	n = 0;
-	while (*s)
-	{
-		if (*s && *s != c)
-		{
-			n += 1;
-			while (*s && *s != c)
-				++s;
-		}
-		else
-			++s;
-	}
-	return (n);
-}
-
-void	free_split(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		str[i] = NULL;
-		++i;
-	}
-	free(str);
-	str = NULL;
-}
-
-int	put_sentence(char **str, char const *s, char c)
-{
-	int		i;
-	char	*head;
+	size_t	i;
 
 	i = 0;
 	while (*s)
 	{
-		if (*s && *s != c)
+		if (*s != c && *s)
 		{
-			head = (char *)s;
-			while (*s && *s != c)
-				++s;
-			str[i] = ft_substr(head, 0, (s - head));
-			if (str[i] == NULL)
-			{
-				free_split(str);
-				return (0);
-			}
-			++i;
+			while (*s != c && *s)
+				s++;
+			i++;
 		}
 		else
-			++s;
+			s++;
 	}
-	str[i] = NULL;
-	return (1);
+	return (i);
+}
+
+static size_t	ft_count_chars(char const *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != c && s[i])
+		i++;
+	return (i);
+}
+
+static char const	*ft_next_strs(char const *s, char c, int i)
+{
+	if (i == 0)
+		while (*s && *s == c)
+			s++;
+	else
+		while (*s && *s != c)
+			s++;
+	return (s);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**str;
+	size_t	i;
+	size_t	num_strs;
+	char	**ptrs;
 
 	if (!s)
-		return (NULL);
-	str = ft_calloc(sizeof(char *), (find_it(s, c) + 1));
-	if (str == NULL)
-		return (NULL);
-	if (!put_sentence(str, s, c))
+		return (0);
+	i = 0;
+	num_strs = ft_count_strs(s, c) + 1;
+	ptrs = (char **)ft_calloc(num_strs, sizeof(char *));
+	if (!ptrs)
+		return (0);
+	ptrs[num_strs - 1] = NULL;
+	while (i + 1 < num_strs)
 	{
-		free(str);
-		str = NULL;
-		return (NULL);
+		s = ft_next_strs(s, c, 0);
+		ptrs[i] = (char *)ft_calloc(ft_count_chars(s, c) + 1, sizeof(char));
+		if (!ptrs[i])
+			return (ft_free_strs(ptrs));
+		ft_strlcpy(ptrs[i++], s, ft_count_chars(s, c) + 1);
+		s = ft_next_strs(s, c, 1);
 	}
-	return (str);
+	return (ptrs);
 }
