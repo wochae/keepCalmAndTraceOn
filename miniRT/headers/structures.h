@@ -1,5 +1,5 @@
 #ifndef STRUCTURES_H
-#define STRUCTURES_H
+# define STRUCTURES_H
 
 # include "libft.h"
 
@@ -38,11 +38,11 @@ typedef struct s_dot3 t_point3;
 typedef struct s_dot3 t_vec3;
 typedef struct s_dot3 t_color3;
 
-//typedef struct s_ray
-//{
-//	t_point3	origin;
-//	t_vec3		dir_v;
-//}	t_ray;
+typedef struct s_ray
+{
+	t_point3	origin;
+	t_vec3		dir_v;
+}	t_ray;
 
 typedef struct s_cam
 {
@@ -70,6 +70,7 @@ typedef struct s_sphere
 	t_point3	center;
 	double		radius; //->diameter을 반으로 나눠서
 	double 		radius_d;
+    t_color3    sp_rgb;
 }	t_sphere;
 
 typedef struct s_light
@@ -99,7 +100,7 @@ typedef struct s_info
 	t_object		*objects; //object->element에 오브젝트를 통째로 담아야됨! 즉, object->element가 오브젝트 연결리스트임
 	t_object		*lights;
 	t_ambient		ambient;
-//	t_ray			ray;
+	t_ray			ray;
 //	t_hit_record	rec;
 
 // void clicked;
