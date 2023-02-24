@@ -58,7 +58,6 @@ typedef struct s_object
 	t_obj_type	type;
 	void		*element;
 	void		*next;
-	t_color3	albedo;
 }	t_object;
 
 typedef struct s_sphere
@@ -68,6 +67,22 @@ typedef struct s_sphere
 	double		radius_d;
 	t_color3	sp_rgb;
 }	t_sphere;
+
+typedef struct s_plane
+{
+	t_point3	pos;
+	t_vec3		dir;
+	t_color3	color;
+}	t_plane;
+
+typedef struct s_cylinder
+{
+	t_point3	pos;
+	t_vec3		dir;
+	t_color3	color;
+	double		r;
+	double		height;
+}	t_cylinder;
 
 typedef struct s_light
 {

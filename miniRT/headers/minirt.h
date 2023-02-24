@@ -19,6 +19,9 @@ typedef enum e_info_type
 	LIT = 0x0004,
 }	t_info_type;
 
+/* util */
+void    obj_add(t_object **list, t_object *new);
+
 
 /* parse with ',' */
 t_color3	parse_color(char *str);

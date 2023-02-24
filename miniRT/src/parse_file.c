@@ -27,6 +27,8 @@ void	read_file(char *file, char **content)
 		ft_memset(buf, 0, BUFFER_SIZE);
 		read_size = read(fd, buf, BUFFER_SIZE);
 		if (read_size < 0)
+			ft_error("malloc has been filed");
+		if (read_size < BUFFER_SIZE)
 			break ;
 		buf[read_size] = 0;
 		tmp = *content;
@@ -72,15 +74,15 @@ static void	parse_a_line(char *line, int *flag, t_info *info)
 		parse_camera(args, info);
 	else if (!ft_strcmp(args[0], "L"))
 		parse_light(args, info);
-	// else if (!ft_strcmp(args[0], "sp"))
-	// 	parse_sphere(args, info);
-	// else if (!ft_strcmp(args[0], "pl"))
-	// 	parse_plane(args, info);
-	// else if (!ft_strcmp(args[0], "cy"))
-	// 	parse_cylinder(args, info);
+	else if (!ft_strcmp(args[0], "sp"))
+		parse_sphere(args, info);
+	else if (!ft_strcmp(args[0], "pl"))
+		parse_plane(args, info);
+	else if (!ft_strcmp(args[0], "cy"))
+		parse_cylinder(args, info);
 	else
 		ft_error("wrong input : undefined identifier");
-	ft_putstr_fd("flag passed\n", 2);
+	ft_putstr_fd("flag is good?\n", 2);
 	ft_free_strs(args);
 }
 
