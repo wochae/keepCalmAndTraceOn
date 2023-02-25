@@ -2,26 +2,27 @@
 # define MINIRT_H
 
 # include "structures.h"
+# include "hit.h"
+# include "libft.h"
+# include "list.h"
+# include "mlx.h"
+# include "object.h"
+# include "ray.h"
+# include "scene.h"
+# include "util.h"
+# include "vector.h"
 
-// typedef enum e_obj
-// {
-// 	SPHERE,
-// 	PLANE,
-// 	CYLINDER,
-// 	CAMERA,
-// 	LIGHT,
-// }	t_object_type;
-
-typedef enum e_info_type
-{
-	AMB = 0x0001,
-	CAM = 0x0002,
-	LIT = 0x0004,
-}	t_info_type;
 
 /* util */
-void    obj_add(t_object **list, t_object *new);
+void            obj_add(t_object **list, t_object *new);
 
+/* init */
+void	        scene_init(t_info *info);
+t_hit_record	record_init(void);
+
+/* scene */
+t_canvas	canvas_set(int w, int h);
+void	    cam_set(t_info *info);
 
 /* parse with ',' */
 t_color3	parse_color(char *str);

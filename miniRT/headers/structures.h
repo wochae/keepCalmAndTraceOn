@@ -2,18 +2,22 @@
 # define STRUCTURES_H
 
 # include "libft.h"
+# include "minirt.h"
 
 # define FALSE 0
 # define TRUE 1
 # define POINT_LIGHT 1
 # define EPSILON 1e-6
-// define LUMEN 3 SPEC 0
+# define LUMEN 3
 
 typedef enum e_obj_type
 {
-	SPHERE,
-	PLANE,
-	CYLINDER
+	AMB = 0x0001,
+	CAM = 0x0002,
+	LIT = 0x0004,
+	SPHERE = 0x0008,
+	PLANE = 0x0009,
+	CYLINDER = 0x000a
 }	t_obj_type;
 
 struct s_dot3
@@ -30,18 +34,18 @@ typedef struct s_dot3	t_color3;
 typedef struct s_ray
 {
 	t_point3	origin;
-	t_vec3		dir_v;
+	t_vec3		dir;
 }	t_ray;
 
 typedef struct s_cam
 {
 	t_point3	origin;
-	double		viewport_w;
-	double		viewport_h;
+	t_vec3		looking_side;
 	t_vec3		dir_horizontal;
 	t_vec3		dir_vertical;
+	double		viewport_w;
+	double		viewport_h;
 	double		focal_len;
-	t_vec3		looking_side;
 	double		fov;
 	t_point3	left_bottom;
 }	t_cam;
@@ -84,6 +88,17 @@ typedef struct s_cylinder
 	double		height;
 }	t_cylinder;
 
+typedef struct s_hit_record
+{
+	t_point3	hit_point;
+	t_vec3		normal_v;
+	double		t;
+	double		t_min; // t가 음수면 광선이 뒤를 향하는 것 = 카메라 뒤에 있는 것
+	double 		t_max; // 너무 멀 경우
+	double		front_face;
+	t_color3	rgb;
+}	t_hit_record;
+
 typedef struct s_light
 {
 	t_point3	origin;
@@ -112,7 +127,7 @@ typedef struct s_info
 	t_light         light;
 	t_ambient		ambient;
 	t_ray			ray;
-//	t_hit_record	rec;
+	t_hit_record	rec;
 
 // void clicked;
 // int clicked_type;
