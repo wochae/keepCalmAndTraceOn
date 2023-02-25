@@ -13,11 +13,11 @@ void    parse_sphere(char **args, t_info *info)
 		ft_error("malloc failed");
 	new_sp->center = parse_pt(args[1]);
 	new_sp->radius = ft_atod(args[2]) / 2;
-	new_sp->radius_d = new_sp->radius * new_sp->radius;
-	new_sp->sp_rgb = parse_pt(args[3]);
+	new_sp->radius_d = (new_sp->radius) * (new_sp->radius);
+	new_sp->sp_rgb = parse_color(args[3]);
 	obj->element = new_sp;
 	obj->type = SPHERE;
-	obj_add(info->objects, obj);
+	obj_add(&info->objects, obj);
 }
 
 void	parse_plane(char **args, t_info *info)
@@ -37,7 +37,7 @@ void	parse_plane(char **args, t_info *info)
 	new_pl->color = parse_color(args[3]);
 	obj->element = new_pl;
 	obj->type = PLANE;
-	obj_add(info->objects, obj);
+	obj_add(&info->objects, obj);
 }
 
 void	parse_cylinder(char **args, t_info *info)
@@ -59,5 +59,5 @@ void	parse_cylinder(char **args, t_info *info)
 	new_cy->color = parse_color(args[5]);
 	obj->type = CYLINDER;
 	obj->element = new_cy;
-	obj_add(info->objects, obj);
+	obj_add(&info->objects, obj);
 }
