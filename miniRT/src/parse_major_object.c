@@ -28,5 +28,8 @@ void	parse_light(char **args, t_info *info)
 		ft_error("wrong input : 'L' must have 4 arguments");
 	info->light.origin = parse_pt(args[1]);
 	info->light.bright_ratio = ft_atod(args[2]);
+    info->light.amount.x = 1;
+    info->light.amount.y = 1;
+    info->light.amount.z = 1;
 
 }

@@ -35,7 +35,8 @@ t_color3	parse_color(char *str)
 	if (color.z < 0 || color.z > 255 || color.y < 0 || color.y > 255 || \
 		color.x < 0 || color.x > 255)
 		ft_error("wrong input : color must be 0 ~ 255");
-	color = (t_color3){color.x / 255.0, color.y / 255.0, color.z / 255.0};
+//    color = (t_color3){color.x / 255.0, color.y / 255.0, color.z / 255.0};
+    color = (t_color3){color.x, color.y, color.z};
 	return (color);
 }
 

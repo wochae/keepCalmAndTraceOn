@@ -37,17 +37,15 @@ void	ft_execve(t_info *info) // for testing
             double v = (info->canvas.canvas_h - 1 - (double)j) / (info->canvas.canvas_h - 1);
             info->ray = ray_primary(info->cam, u, v);
             colors = ray_color(info->ray, info, max_depth);
-            int r = 255.999 * colors.x;
-            int g = 255.999 * colors.y;
-            int b = 255.999 * colors.z;
             dst = info->addr + (j * info->size_line + i * 4);
-            *(unsigned int *)dst = (r * 256 * 256) + (g * 256) + b;
+            *(unsigned int *)dst = (colors.x * 256 * 256) + (colors.y * 256) + colors.z;
             i++;
         }
         j++;
     }
     mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 	mlx_loop(info->mlx);
+
 	t_ambient amb = info->ambient;
 	t_cam cam = info->cam;
 	t_light light = info->light;

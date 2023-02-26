@@ -37,12 +37,12 @@ $(NAME) :$(OBJS)
 clean :
 	make clean -C libft
 	make clean -C mlx
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean :
 	make clean
 	rm -f $(LIBFT)
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS)
 
 re :
 	make fclean

@@ -64,5 +64,5 @@ t_color3	lighting_set(t_info *info)
 	light_amount = color3(light_amount.x * info->rec.rgb.x, \
 	light_amount.y * info->rec.rgb.y, \
 	light_amount.z * info->rec.rgb.z);
-	return(color3(fmin(light_amount.x , 1.0), fmin(light_amount.y , 1.0), fmin(light_amount.z , 1.0)));
+	return(color3(fmin(light_amount.x , 255), fmin(light_amount.y , 255), fmin(light_amount.z , 255)));
 }

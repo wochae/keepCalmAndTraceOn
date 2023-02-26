@@ -4,7 +4,7 @@
 void	scene_init(t_info *info)
 {
 	info->canvas = canvas_set(960, 540);
-	cam_set(info);
+	info->cam = cam_set(info->canvas, info->cam.origin);
 }
 
 t_hit_record	record_init(void)
@@ -26,18 +26,25 @@ t_canvas	canvas_set(int w, int h)
 	return (canvas);
 }
 
-void	cam_set(t_info *info)
+t_cam	cam_set(t_canvas canvas, t_point3 origin)
 {
-	t_cam	cam;
+    t_cam	cam;
+    double	focal_len;
+    double	viewport_h;
 
-    cam = info->cam;
-	cam.focal_len = tan(cam.fov/2);
-	cam.viewport_h = 2.0 * cam.focal_len;
-	cam.viewport_w = cam.viewport_h * info->canvas.ratio;
+    double 	fov = 90.0;
+
+    focal_len = 1.0;
+    double h = tan(fov/2);
+    viewport_h = 2.0 * h;
+    cam.origin = origin;
+    cam.viewport_h = viewport_h;
+    cam.viewport_w = viewport_h * canvas.ratio;
+    cam.focal_len = focal_len;
     cam.dir_horizontal = vec3(cam.viewport_w, 0, 0);
     cam.dir_vertical = vec3(0, cam.viewport_h, 0);
-	cam.left_bottom = minus(cam.origin, vec3(0, 0, cam.focal_len));
-	cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_vertical, 2));
-	cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_horizontal, 2));
-	info->cam = cam;
+    cam.left_bottom = minus(cam.origin, vec3(0, 0, cam.focal_len));
+    cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_vertical, 2));
+    cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_horizontal, 2));
+    return (cam);
 }
