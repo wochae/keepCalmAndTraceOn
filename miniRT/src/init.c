@@ -1,4 +1,5 @@
 #include "minirt.h"
+#include <math.h>
 
 void	scene_init(t_info *info)
 {
@@ -13,4 +14,29 @@ t_hit_record	record_init(void)
 	record.t_min = EPSILON;
 	record.t_max = INFINITY;
 	return (record);
+}
+
+t_canvas	canvas_set(int w, int h)
+{
+	t_canvas	canvas;
+
+	canvas.canvas_w = w;
+	canvas.canvas_h = h;
+	canvas.ratio = (double)w / (double)h;
+	return (canvas);
+}
+
+void	cam_set(t_info *info)
+{
+	t_cam	cam;
+
+    cam = info->cam;
+	cam.dir = unit(cam.dir);
+	cam.focal_len = tan((cam.fov * M_PI / 180.0) / 2.0);
+	cam.viewport_h = 2.0 * cam.focal_len;
+	cam.viewport_w = cam.viewport_h * info->canvas.ratio;
+	cam.left_bottom = minus(cam.origin, vec3(0, 0, cam.focal_len));
+	cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_vertical, 2));
+	cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_horizontal, 2));
+	info->cam = cam;
 }

@@ -1,5 +1,5 @@
 #ifndef LIST_H
-# define LIST_H
+#define LIST_H
 
 # include "minirt.h"
 

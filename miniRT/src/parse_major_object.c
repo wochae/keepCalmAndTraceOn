@@ -15,8 +15,8 @@ void	parse_camera(char **args, t_info *info)
 	if (ft_strslen(args) != 4)
 		ft_error("wrong input : 'C' must have 4 arguments");
 	info->cam.origin = parse_pt(args[1]);
-	info->cam.looking_side = parse_pt(args[2]);
-	check_n_vec(info->cam.looking_side);
+	info->cam.dir = parse_pt(args[2]);
+	check_n_vec(info->cam.dir);
 	info->cam.fov = ft_atod(args[3]);
 	if (info->cam.fov < 0 || info->cam.fov > 180)
 		ft_error("wrong input : fov must have 0 ~180");
