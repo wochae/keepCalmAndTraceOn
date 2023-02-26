@@ -31,10 +31,11 @@ void	cam_set(t_info *info)
 	t_cam	cam;
 
     cam = info->cam;
-	cam.dir = unit(cam.dir);
-	cam.focal_len = tan((cam.fov * M_PI / 180.0) / 2.0);
+	cam.focal_len = tan(cam.fov/2);
 	cam.viewport_h = 2.0 * cam.focal_len;
 	cam.viewport_w = cam.viewport_h * info->canvas.ratio;
+    cam.dir_horizontal = vec3(cam.viewport_w, 0, 0);
+    cam.dir_vertical = vec3(0, cam.viewport_h, 0);
 	cam.left_bottom = minus(cam.origin, vec3(0, 0, cam.focal_len));
 	cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_vertical, 2));
 	cam.left_bottom = minus(cam.left_bottom, devide_t(cam.dir_horizontal, 2));
