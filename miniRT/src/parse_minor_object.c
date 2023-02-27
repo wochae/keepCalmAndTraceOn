@@ -33,8 +33,7 @@ void	parse_plane(char **args, t_info *info)
 	if (!obj || !new_pl)
 		ft_error("memory allocation failed");
 	new_pl->pos = parse_pt(args[1]);
-	new_pl->dir = parse_pt(args[2]);
-	check_n_vec(new_pl->dir);
+	new_pl->dir = parse_n_vec(args[2]);
 	new_pl->color = parse_color(args[3]);
 	obj->element = new_pl;
 	obj->type = PLANE;
@@ -54,8 +53,7 @@ void	parse_cylinder(char **args, t_info *info)
 	if (!obj || !new_cy)
 		ft_error("memory allocation failed");
 	new_cy->pos = parse_pt(args[1]);
-	new_cy->dir = parse_pt(args[2]);
-	check_n_vec(new_cy->dir);
+	new_cy->dir = parse_n_vec(args[2]);
 	new_cy->r = ft_atod(args[3]) / 2;
 	new_cy->height = ft_atod(args[4]);
 	new_cy->color = parse_color(args[5]);

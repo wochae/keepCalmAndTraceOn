@@ -18,7 +18,8 @@
 
 # define FALSE 0
 # define TRUE 1
-# define POINT_LIGHT 1
+# define WIDTH	1200
+# define HEIGHT	800
 # define EPSILON 1e-6
 # define LUMEN 3
 
@@ -27,15 +28,14 @@ void            obj_add(t_object **list, t_object *new);
 
 /* init */
 t_hit_record	record_init(void);
-
-/* scene */
-void	    scene_init(t_info *info);
-t_canvas	canvas_set(int w, int h);
-void        cam_set(t_info *info);
+t_canvas	    canvas_set(int w, int h);
+void            cam_setting(t_info *info);
+// void            scene_init(t_info *info);
+void            mlx_setting(t_info *info);
 
 /* execve */
 
-void	ft_execve(t_info *info);
+void            ft_execve(t_info *info);
 
 /* parse with ',' */
 t_color3	parse_color(char *str);
