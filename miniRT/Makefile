@@ -14,7 +14,7 @@ CFILES = main.c \
 		object.c
 
 SRC_DIR = ./src
-HDRS = ./tmp
+HDRS = ./includes
 
 SRCS = ${addprefix ${SRC_DIR}/, ${CFILES}}
 OBJS = $(SRCS:.c=.o)

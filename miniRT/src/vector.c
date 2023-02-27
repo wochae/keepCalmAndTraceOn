@@ -1,4 +1,4 @@
-#include "../tmp/minirt.h"
+#include "../includes/minirt.h"
 
 t_point3	point3(double x, double y, double z)
 {

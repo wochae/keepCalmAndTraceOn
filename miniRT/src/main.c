@@ -1,4 +1,4 @@
-#include "../tmp/minirt.h"
+#include "../includes/minirt.h"
 
 static void	parse(char *argv, t_info *info)
 {
