@@ -11,7 +11,6 @@ static void	parse(char *argv, t_info *info)
     read_file(argv, &content);
     parse_to_info(content, info);
     scene_init(info);
-    mlx_setting(info); // -> 이거 parse() 안 어딘가에 넣으면 좋을듯
 
 }
 
@@ -41,28 +40,41 @@ void draw(t_info *info)
     mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 }
 
+void    ft_execve(t_info *info)
+{
+    mlx_setting(info);
+    draw(info);
+    // mlx_hook
+    mlx_loop(info->mlx);
+}
+
 void	mlx_setting(t_info *info)
 {
     info->mlx = mlx_init();
-    info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "test");
-    info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
-    info->addr = mlx_get_data_addr(info->img, &info->bits_per_pixel, &info->size_line, &info->endian);
+	if (!info->mlx)
+		ft_error("mlx_init() failed");
+    info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "test1");
+    if (!info->win)
+		ft_error("mlx_new_window() failed");
+	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
+	if (!info->img)
+		ft_error("mlx_new_image() failed");
+	info->addr = mlx_get_data_addr(info->img, &info->bits_per_pixel, \
+		&info->size_line, &info->endian);
+	if (!info->addr)
+		ft_error("mlx_get_data_addr() failed");
 }
 
 int main(int argc, char **argv)
 {
-    t_info		*info;
+    t_info		info;
 
-    if (!(info = malloc(sizeof(t_info))))
-        return (0);
 	ft_memset(&info, 0, sizeof(t_info));
 	if (argc != 2)
 		ft_error("wrong number of arguments");
-    parse(argv[1], info);
+    parse(argv[1], &info);
     // render with ray_set
-    draw(info);
-    // mlx_hook
-    mlx_loop(info->mlx);
-    return (0);
+    ft_execve(&info);
+    exit(0);
 }
 
