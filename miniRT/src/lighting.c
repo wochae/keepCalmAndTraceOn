@@ -46,7 +46,7 @@ t_color3	get_light_amount(t_info *info, t_light	light)
 	similar = pow(fmax(dot(reflect_dir, view_dir), 0.0), shininess);
 	specular = mult_t(mult_t(light.amount, similar), spec_strength);
 
-	brightness = light.bright_ratio * LUMEN;
+	brightness = light.ratio * LUMEN;
 	return (mult_t(plus(diffuse, specular), brightness));
 }
 
@@ -64,5 +64,5 @@ t_color3	lighting_set(t_info *info)
 	light_amount = color3(light_amount.x * info->rec.rgb.x, \
 	light_amount.y * info->rec.rgb.y, \
 	light_amount.z * info->rec.rgb.z);
-	return(color3(fmin(light_amount.x , 255), fmin(light_amount.y , 255), fmin(light_amount.z , 255)));
+	return(color3(fmin(light_amount.x , 1.0), fmin(light_amount.y , 1.0), fmin(light_amount.z , 1.0)));
 }

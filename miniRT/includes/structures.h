@@ -103,7 +103,7 @@ typedef struct s_light
 {
     t_point3	origin;
     t_color3	amount;
-    double		bright_ratio;
+    double		ratio;
 }	t_light;
 
 typedef struct s_ambient

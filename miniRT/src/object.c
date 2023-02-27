@@ -60,6 +60,6 @@ t_light	light_set(t_point3 light_origin, t_color3 light_amount, double bright_ra
 
 	new.origin = light_origin;
 	new.amount = light_amount;
-	new.bright_ratio = bright_ratio;
+	new.ratio = bright_ratio;
 	return (new);
 }
