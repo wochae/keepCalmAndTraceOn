@@ -18,8 +18,8 @@ t_sphere *sphere(t_point3 center, t_color3 rgb, double radius)
 
 	if (!(new = malloc(sizeof(t_sphere))))
 		return (NULL);
-	new->center = center;
-	new->sp_rgb = rgb;
+	new->point = center;
+	new->rgb = rgb;
 	new->radius = radius;
 	new->radius_d = radius * radius;
 	return (new);
@@ -31,9 +31,9 @@ t_plane		*plane(t_point3 center, t_vec3 dir, t_color3 rgb)
 
 	if (!(new = malloc(sizeof(t_plane))))
 		return (NULL);
-	new->pos = center;
+	new->point = center;
 	new->dir = dir;
-	new->color = rgb;
+	new->rgb = rgb;
 	return (new);
 }
 
@@ -44,11 +44,11 @@ t_cylinder	*cylinder(t_point3 center, t_vec3 dir, t_color3 rgb, double diameter,
 
 	if (!(new = malloc(sizeof(t_cylinder))))
 		return (NULL);
-	new->pos = center;
+	new->point = center;
 	new->dir = dir;
-	new->color = rgb;
+	new->rgb = rgb;
 	radius = diameter / 2;
-	new->r = radius;
+	new->radius = radius;
 	new->height = height;
 	return (new);
 }

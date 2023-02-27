@@ -66,25 +66,25 @@ typedef struct s_object
 
 typedef struct s_sphere
 {
-    t_point3	center;
+    t_point3	point;
     double		radius;
     double		radius_d;
-    t_color3	sp_rgb;
+    t_color3	rgb;
 }	t_sphere;
 
 typedef struct s_plane
 {
-    t_point3	pos;
+    t_point3	point;
     t_vec3		dir;
-    t_color3	color;
+    t_color3	rgb;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-    t_point3	pos;
+    t_point3	point;
     t_vec3		dir;
-    t_color3	color;
-    double		r;
+    t_color3	rgb;
+    double		radius;
     double		height;
 }	t_cylinder;
 
