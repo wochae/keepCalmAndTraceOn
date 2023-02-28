@@ -46,7 +46,7 @@ t_color3	get_light_amount(t_info *info, t_light	light)
 	similar = pow(fmax(dot(reflect_dir, view_dir), 0.0), shininess);
 	specular = mult_t(mult_t(light.amount, similar), spec_strength);
 
-	brightness = light.bright_ratio * LUMEN;
+	brightness = light.ratio * LUMEN;
 	return (mult_t(plus(diffuse, specular), brightness));
 }
 

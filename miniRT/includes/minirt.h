@@ -1,28 +1,38 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "structures.h"
-# include "hit.h"
-# include "libft.h"
-# include "list.h"
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
 # include "mlx.h"
-# include "object.h"
-# include "ray.h"
-# include "scene.h"
-# include "util.h"
+# include "libft.h"
+
+# include "structures.h"
 # include "vector.h"
+# include "ray.h"
+# include "hit.h"
 
+# include "list.h"
+# include "object.h"
 
-/* util */
-void            obj_add(t_object **list, t_object *new);
+# define FALSE 0
+# define TRUE 1
+# define WIDTH	1200
+# define HEIGHT	800
+# define EPSILON 1e-6
+# define LUMEN 3
 
 /* init */
-void	        scene_init(t_info *info);
 t_hit_record	record_init(void);
+t_canvas        canvas_set(int w, int h);
+void            cam_setting(t_info *info);
+void            scene_init(t_info *info);
+void            mlx_setting(t_info *info);
 
-/* scene */
-t_canvas	canvas_set(int w, int h);
-void	    cam_set(t_info *info);
+/* execve */
+
+void            ft_execve(t_info *info);
 
 /* parse with ',' */
 t_color3	parse_color(char *str);
@@ -31,7 +41,6 @@ t_vec3		parse_n_vec(char *str);
 
 void		mlx_info_init(t_info *info);
 t_vec3		cam_set_vup(t_vec3 dir);
-void		cam_init(t_info *info);
 t_ray		ray_init(t_info *info, double x, double y);
 
 /* parse */

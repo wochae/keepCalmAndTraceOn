@@ -1,4 +1,5 @@
 NAME = miniRT
+
 CFILES = main.c \
 		ray.c \
 		vector.c \
@@ -10,11 +11,10 @@ CFILES = main.c \
 		parse_util.c \
 		list.c \
 		hit.c \
-		scene.c \
-		object.c 
+		object.c
 
 SRC_DIR = ./src
-HDRS = ./headers
+HDRS = ./includes
 
 SRCS = ${addprefix ${SRC_DIR}/, ${CFILES}}
 OBJS = $(SRCS:.c=.o)
@@ -22,6 +22,7 @@ OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror -g -O2
 MLX_FLAGS	=	-L./mlx -lmlx -framework OpenGL -framework Appkit
 LIBFT = libft/libft.a
+
 all : $(NAME)
 
 %.o : %.c
@@ -36,12 +37,12 @@ $(NAME) :$(OBJS)
 clean :
 	make clean -C libft
 	make clean -C mlx
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean :
 	make clean
 	rm -f $(LIBFT)
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS)
 
 re :
 	make fclean

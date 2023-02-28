@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 void    obj_add(t_object **list, t_object *new)
 {

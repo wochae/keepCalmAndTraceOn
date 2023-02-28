@@ -48,7 +48,7 @@ SRCS = ft_isalpha.c \
 		ft_lstiter.c \
 		ft_lstmap.c
 
-HDRS = ../headers
+HDRS = ../includes
 
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror -g -O2
