@@ -11,7 +11,13 @@ CFILES = main.c \
 		parse_util.c \
 		list.c \
 		hit.c \
-		object.c
+		object.c \
+		colors.c \
+		key_move.c \
+		key_move_util.c \
+		key_rotate.c \
+		key_rotate_util.c \
+		key_util.c
 
 SRC_DIR = ./src
 HDRS = ./includes

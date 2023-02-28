@@ -1,4 +1,5 @@
 #include "../includes/minirt.h"
+#include "../mlx/mlx.h"
 
 static void	parse(char *argv, t_info *info)
 {
@@ -40,11 +41,19 @@ void draw(t_info *info)
     mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 }
 
-void    ft_execve(t_info *info)
+static int	red_button(t_info *info)
+{
+    mlx_destroy_window(info->mlx, info->win);
+    exit(0);
+}
+
+
+static void    ft_execve(t_info *info)
 {
     mlx_setting(info);
     draw(info);
-    // mlx_hook
+    mlx_hook(info->win, 2, 0, key_press, info);
+    mlx_hook(info->win, 17, 0, red_button, info);
     mlx_loop(info->mlx);
 }
 
@@ -63,6 +72,11 @@ void	mlx_setting(t_info *info)
 		&info->size_line, &info->endian);
 	if (!info->addr)
 		ft_error("mlx_get_data_addr() failed");
+    print_key_info(info);
+    mlx_string_put(info->mlx, info->win, 20, HEIGHT + 20, 0xFFFFFF, \
+		"C : select camera");
+    mlx_string_put(info->mlx, info->win, 170, HEIGHT + 20, 0xFFFFFF, \
+		"L : select light");
 }
 
 int main(int argc, char **argv)

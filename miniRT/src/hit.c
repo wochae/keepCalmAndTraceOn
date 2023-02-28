@@ -1,4 +1,5 @@
 #include "minirt.h"
+#include "math.h"
 
 int	hit_object(t_object *object, t_ray ray, t_hit_record *rec)
 {

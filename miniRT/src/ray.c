@@ -1,4 +1,5 @@
 #include "minirt.h"
+#include "math.h"
 
 t_ray	ray_set(t_point3 point, t_vec3 vec)
 {

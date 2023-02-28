@@ -1,4 +1,4 @@
-#include "../includes/object.h"
+#include "minirt.h"
 
 t_object *object(t_obj_type type, void *element)
 {
