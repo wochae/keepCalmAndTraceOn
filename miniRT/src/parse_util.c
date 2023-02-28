@@ -1,12 +1,5 @@
 #include "minirt.h"
 
-void	check_n_vec(t_point3 vec)
-{
-	if (vec.x < -1 || 1 < vec.x || vec.y < -1 || 1 < vec.y || \
-		vec.z < -1 || 1 < vec.z)
-		ft_error("normalized vector is not in range [-1, 1]");
-}
-
 static void	check_sep(char *str, char sep, int num)
 {
 	while (*str)
@@ -63,5 +56,7 @@ t_point3	parse_n_vec(char *str)
 	if (vec.x < -1 || vec.x > 1 || vec.y < -1 || vec.y > 1 || \
 		vec.z < -1 || vec.z > 1)
 		ft_error("wrong input : vector must be -1 ~ 1");
+    if (vec.x == 0 && vec.y == 0 && vec.z == 0)
+            ft_error("cam must have any dir");
 	return (vec);
 }

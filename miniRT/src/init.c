@@ -5,7 +5,7 @@
 t_vec3	cam_set_vup(t_vec3 dir)
 {
 	if (dir.x == 0 && dir.y != 0 && dir.z == 0)
-		return (vec3(0, dir.y, 1e-6));
+		return (vec3(0, dir.y, EPSILON));
 	else
 		return (vec3(0, 1, 0));
 }
