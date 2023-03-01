@@ -23,6 +23,7 @@ void	cam_setting(t_info *info)
 	t_vec3	u;
 	t_vec3	v;
 
+    info->cam.dir = unit(info->cam.dir);
 	info->cam.focal_len = tan((info->cam.fov * M_PI / 180.0) / 2.0);
 	info->cam.viewport_h = 2.0 * info->cam.focal_len;
 	info->cam.viewport_w = info->cam.viewport_h * info->canvas.ratio;

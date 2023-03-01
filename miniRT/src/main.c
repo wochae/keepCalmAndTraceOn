@@ -30,8 +30,7 @@ void draw(t_info *info)
         while (i < WIDTH)
         {
             info->ray = ray_primary(info, \
-			(double)i / (WIDTH - 1), \
-			(HEIGHT - 1 - (double)j) / (HEIGHT - 1));
+			(double)i / (WIDTH - 1), (HEIGHT - 1 - (double)j) / (HEIGHT - 1));
             colors = ray_color(info->ray, info);
             dst = info->addr + (j * info->size_line + i * 4);
             *(unsigned int *)dst = ((int)(255.999 * colors.x) * 256 * 256) + ((int)(255.999 * colors.y) * 256) + (int)(255.999 * colors.z);

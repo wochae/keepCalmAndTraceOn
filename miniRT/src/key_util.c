@@ -59,13 +59,13 @@ void	print_key_info(t_info *info)
     mlx_string_put(info->mlx, info->win, 170, HEIGHT + 80, 0xFFFFFF, \
 		"E : move down");
     mlx_string_put(info->mlx, info->win, 320, HEIGHT + 40, 0xFFFFFF, \
-		"^ : rotate left from x_axis");
+		"< : rotate left from x_axis");
     mlx_string_put(info->mlx, info->win, 520, HEIGHT + 40, 0xFFFFFF, \
-		"v : rotate right from x_axis");
+		"> : rotate right from x_axis");
     mlx_string_put(info->mlx, info->win, 320, HEIGHT + 60, 0xFFFFFF, \
-		"< : rotate left from y_axis");
+		"^ : rotate left from y_axis");
     mlx_string_put(info->mlx, info->win, 520, HEIGHT + 60, 0xFFFFFF, \
-		"> : rotate right from y_axis");
+		"v : rotate right from y_axis");
 }
 
 int	key_press(int keycode, t_info *info)
