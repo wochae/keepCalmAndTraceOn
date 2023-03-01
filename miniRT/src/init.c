@@ -17,7 +17,7 @@ void	scene_init(t_info *info)
 }
 
 
-void	cam_setting(t_info *info) // 원래 이름 cam_init
+void	cam_setting(t_info *info)
 {
 	t_vec3	w;
 	t_vec3	u;
@@ -35,14 +35,14 @@ void	cam_setting(t_info *info) // 원래 이름 cam_init
 		devide_t(info->cam.dir_horizontal, 2)), devide_t(info->cam.dir_vertical, 2)), w);
 }
 
-t_hit_record	record_init(void)
-{
-	t_hit_record	record;
-
-	record.t_min = EPSILON;
-	record.t_max = INFINITY;
-	return (record);
-}
+//t_hit_record	record_init(void)
+//{
+//	t_hit_record	record;
+//
+//	record.t_min = EPSILON;
+//	record.t_max = INFINITY;
+//	return (record);
+//}
 
 t_canvas	canvas_set(int w, int h)
 {

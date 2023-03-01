@@ -8,8 +8,8 @@
 # define TRUE 1
 # define FALSE 0
 
-# define MOVEMENT 0.5
-# define ROTATION 0.5
+# define MOVEMENT 0.1
+# define ROTATION 0.1
 # define EPSILON 1e-6
 # define LUMEN 3
 
@@ -66,7 +66,7 @@ t_light	    light_set(t_point3 light_origin, t_color3 light_amount, double brigh
 /* ray */
 t_ray		ray_set(t_point3 point, t_vec3 vec);
 t_point3	ray_dest(t_ray ray, double t);
-t_ray		ray_primary(t_cam cam, double half_w, double half_h);
+t_ray		ray_primary(t_info *info, double horiz, double verti);
 t_color3    ray_color(t_ray ray, t_info *info);
 
 /* hit */

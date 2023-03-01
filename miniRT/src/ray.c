@@ -18,10 +18,12 @@ t_point3	ray_dest(t_ray ray, double t)
 	return (dest);
 }
 
-t_ray	ray_primary(t_cam cam, double horiz, double verti)
+t_ray	ray_primary(t_info *info, double horiz, double verti)
 {
+    t_cam cam;
 	t_ray ray_p;
 
+    cam = info->cam;
 	ray_p.origin = cam.origin;
 	ray_p.dir = plus(cam.left_bottom, mult_t(cam.dir_horizontal, horiz));
 	ray_p.dir = plus(ray_p.dir, mult_t(cam.dir_vertical, verti));

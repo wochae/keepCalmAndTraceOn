@@ -23,12 +23,13 @@ void draw(t_info *info)
     t_color3	colors;
 
     j = 0;
+    cam_setting(info);
     while (j < HEIGHT)
     {
         i = 0;
         while (i < WIDTH)
         {
-            info->ray = ray_primary(info->cam, \
+            info->ray = ray_primary(info, \
 			(double)i / (WIDTH - 1), \
 			(HEIGHT - 1 - (double)j) / (HEIGHT - 1));
             colors = ray_color(info->ray, info);
@@ -62,7 +63,7 @@ void	mlx_setting(t_info *info)
     info->mlx = mlx_init();
 	if (!info->mlx)
 		ft_error("mlx_init() failed");
-    info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "test1");
+    info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT + 100, "test1");
     if (!info->win)
 		ft_error("mlx_new_window() failed");
 	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
