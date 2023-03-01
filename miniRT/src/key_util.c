@@ -46,6 +46,10 @@ void	select_object_by_key(t_info *info, int keycode)
 
 void	print_key_info(t_info *info)
 {
+//
+//    t_point3 p = info->cam.origin;
+//    char *s = ft_strjoin(ft_itoa(p.x), ", ");
+//
     mlx_string_put(info->mlx, info->win, 20, HEIGHT + 40, 0xFFFFFF, \
 		"W : move forward");
     mlx_string_put(info->mlx, info->win, 170, HEIGHT + 40, 0xFFFFFF, \
@@ -66,6 +70,8 @@ void	print_key_info(t_info *info)
 		"^ : rotate left from y_axis");
     mlx_string_put(info->mlx, info->win, 520, HEIGHT + 60, 0xFFFFFF, \
 		"v : rotate right from y_axis");
+    mlx_string_put(info->mlx, info->win, 320, HEIGHT + 80, 0xFFFFFF, \
+		"Light pos");
 }
 
 int	key_press(int keycode, t_info *info)
