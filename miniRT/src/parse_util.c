@@ -1,5 +1,20 @@
 #include "minirt.h"
 
+void	obj_add(t_object **list, t_object *new)
+{
+	t_object	*cur;
+
+	if (*list == NULL)
+	{
+		*list = new;
+		return ;
+	}
+	cur = *list;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = new;
+}
+
 static void	check_sep(char *str, char sep, int num)
 {
 	while (*str)
@@ -58,5 +73,5 @@ t_point3	parse_n_vec(char *str)
 		ft_error("wrong input : vector must be -1 ~ 1");
     if (vec.x == 0 && vec.y == 0 && vec.z == 0)
             ft_error("cam must have any dir");
-	return (unit(vec));
+	return (vec);
 }

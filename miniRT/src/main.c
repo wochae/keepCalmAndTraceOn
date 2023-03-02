@@ -1,94 +1,100 @@
-#include "../includes/minirt.h"
-#include "../mlx/mlx.h"
+#include "minirt.h"
 
 static void	parse(char *argv, t_info *info)
 {
-    char	*content;
+	char	*content;
 
-    content = ft_strdup("");
-    if (!content)
-        ft_error("memory alloc failed");
-    check_file_extension(argv);
-    read_file(argv, &content);
-    parse_to_info(content, info);
-    scene_init(info);
-
+	content = ft_strdup("");
+	if (!content)
+		ft_error("memory alloc failed");
+	check_file_extension(argv);
+	read_file(argv, &content);
+	parse_to_info(content, info);
+	mlx_setting(info);
+	cam_setting(&info->cam);
 }
 
 void draw(t_info *info)
 {
-    int			i;
-    int 		j;
-    char		*dst;
-    t_color3	colors;
+	int			i;
+	int 		j;
+	char		*dst;
+	t_color3	colors;
 
-    j = 0;
-    cam_setting(info);
-    while (j < HEIGHT)
-    {
-        i = 0;
-        while (i < WIDTH)
-        {
-            info->ray = ray_primary(info, \
-			(double)i / (WIDTH - 1), (HEIGHT - 1 - (double)j) / (HEIGHT - 1));
-            colors = ray_color(info->ray, info);
-            dst = info->addr + (j * info->size_line + i * 4);
-            *(unsigned int *)dst = ((int)(255.999 * colors.x) * 256 * 256) + ((int)(255.999 * colors.y) * 256) + (int)(255.999 * colors.z);
-            i++;
-        }
-        j++;
-    }
-    mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
+	j = 0;
+	while (j < HEIGHT)
+	{
+		i = 0;
+		while (i < WIDTH)
+		{
+			info->ray = ray_primary(info->cam, \
+			(double)i / (WIDTH - 1), \
+			(HEIGHT - 1 - (double)j) / (HEIGHT - 1));
+			colors = ray_color(info->ray, info);
+			dst = info->addr + (j * info->size_line + i * 4);
+			*(unsigned int *)dst = ((int)(255.999 * colors.x) * 256 * 256) + \
+			((int)(255.999 * colors.y) * 256) + (int)(255.999 * colors.z);
+			i++;
+		}
+		j++;
+	}
+	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 }
 
-static int	red_button(t_info *info)
+//t_light	light_set(t_point3 light_origin, t_color3 light_amount, double bright_ratio)
+//{
+//	t_light	new;
+//
+//	new.origin = light_origin;
+//	new.amount = light_amount;
+//	new.ratio = bright_ratio;
+//	return (new);
+//}
+//
+//void	tmp_init(t_info *info)
+//{
+//	t_object	*objects;
+//	t_light		light;
+//
+//	objects = object(SPHERE, sphere(point3(2, 0, -5), color3(0, 0, 0.5), 2));
+//	obj_add(&objects, object(SPHERE, sphere(point3(-3, 0, -20), color3(0, 0.5, 0), 10)));
+//	obj_add(&objects, object(PLANE, plane(point3(0, -3, 0), unit(vec3(-0.4, -1, 0)), color3(1, 1, 0))));
+//	obj_add(&objects, object(PLANE, plane(point3(0, -8, 0), unit(vec3(0.3, -1, 0)), color3(0, 1, 0))));
+//	obj_add(&objects, object(CYLINDER, cylinder(point3(-1, 2, -4), unit(vec3(-0.4, -1, 1)), color3(1, 0.5, 0), 1, 5)));
+//	obj_add(&objects, object(SPHERE, sphere(point3(3, 3, -5), color3(0, 0.5, 0.5), 1)));
+//	info->objects = objects;
+//
+//	light = light_set(point3(0, 10, 0), color3(1, 1, 1), 0.5);
+//	info->light = light;
+//
+//	info->ambient.ratio = 0.3;
+//
+//	info->ambient.amount = mult_t(color3(1, 1, 1), info->ambient.ratio);
+//}
+
+int	red_button(int exitcode, t_info *info)
 {
-    mlx_destroy_window(info->mlx, info->win);
-    exit(0);
+	(void)info;
+	exit(exitcode);
 }
 
-
-static void    ft_execve(t_info *info)
+int main(int argc, char *argv[])
 {
-    mlx_setting(info);
-    draw(info);
-    mlx_hook(info->win, 2, 0, key_press, info);
-    mlx_hook(info->win, 17, 0, red_button, info);
-    mlx_loop(info->mlx);
-}
-
-void	mlx_setting(t_info *info)
-{
-    info->mlx = mlx_init();
-	if (!info->mlx)
-		ft_error("mlx_init() failed");
-    info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT + 100, "test1");
-    if (!info->win)
-		ft_error("mlx_new_window() failed");
-	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
-	if (!info->img)
-		ft_error("mlx_new_image() failed");
-	info->addr = mlx_get_data_addr(info->img, &info->bits_per_pixel, \
-		&info->size_line, &info->endian);
-	if (!info->addr)
-		ft_error("mlx_get_data_addr() failed");
-    print_key_info(info);
-    mlx_string_put(info->mlx, info->win, 20, HEIGHT + 20, 0xFFFFFF, \
-		"C : select camera");
-    mlx_string_put(info->mlx, info->win, 170, HEIGHT + 20, 0xFFFFFF, \
-		"L : select light");
-}
-
-int main(int argc, char **argv)
-{
-    t_info		info;
+	t_info		info;
 
 	ft_memset(&info, 0, sizeof(t_info));
+//	tmp_init(&info);
+//	mlx_setting(&info);
+//	cam_setting(&info.cam);
+
 	if (argc != 2)
 		ft_error("wrong number of arguments");
-    parse(argv[1], &info);
-    // render with ray_set
-    ft_execve(&info);
-    exit(0);
+
+	parse(argv[1], &info);
+	draw(&info);
+	mlx_hook(info.win, 2, 0, key_press, &info);
+	mlx_hook(info.win, 17, 0, red_button, &info);
+	mlx_loop(info.mlx);
+	return (0);
 }
 

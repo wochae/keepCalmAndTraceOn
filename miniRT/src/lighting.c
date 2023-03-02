@@ -1,5 +1,4 @@
 #include "minirt.h"
-#include "math.h"
 
 int	in_shadow(t_object *objects, t_ray light_ray, double light_len)
 {
@@ -30,7 +29,7 @@ t_color3	get_light_amount(t_info *info, t_light	light)
 
 	light_dir = minus(light.origin, info->rec.hit_point);
 	light_len = vlen(light_dir);
-	r_light_ray = ray_set(plus(info->rec.hit_point, mult_t(info->rec.normal_v, EPSILON)), light_dir);
+	r_light_ray = ray_set(plus(info->rec.hit_point, mult_t(info->rec.normal_v, EPSILON)), unit(light_dir));
 	if (in_shadow(info->objects, r_light_ray, light_len))
 		return (color3(0, 0, 0));
 
@@ -50,7 +49,6 @@ t_color3	get_light_amount(t_info *info, t_light	light)
 	return (mult_t(plus(diffuse, specular), brightness));
 }
 
-// hit.h에 있음(임시)
 t_color3	lighting_set(t_info *info)
 {
 	t_color3	light_amount;

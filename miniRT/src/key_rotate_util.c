@@ -1,6 +1,4 @@
 #include "minirt.h"
-#include "key_map.h"
-#include <math.h>
 
 void	rotate_obj(t_vec3 *dir, t_vec3 rot)
 {
@@ -28,18 +26,18 @@ void	rotate_obj(t_vec3 *dir, t_vec3 rot)
 int	is_rotate_key(int keycode)
 {
     if (keycode == KEY_LEFT || keycode == KEY_RIGHT || \
-		keycode == KEY_UP || keycode == KEY_DOWN)
+		keycode == KEY_UP || keycode == KEY_DOWN || \
+		keycode == KEY_COMMA || keycode == KEY_DOT)
         return (TRUE);
     return (FALSE);
 }
 
-/* 물체 회전 */
 void	key_rotate(void *clicked, int type, int keycode)
 {
     if (type == PLANE)
         rotate_plane((t_plane *)((t_object *)clicked)->element, keycode);
     if (type == CYLINDER)
         rotate_cylinder((t_cylinder *)((t_object *)clicked)->element, keycode);
-    if (type == CAM)
+    if (type == CAMERA)
         rotate_camera((t_cam *)clicked, keycode);
 }
