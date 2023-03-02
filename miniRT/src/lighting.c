@@ -1,5 +1,5 @@
 #include "minirt.h"
-
+#include "math.h"
 
 int	in_shadow(t_object *objects, t_ray light_ray, double light_len)
 {

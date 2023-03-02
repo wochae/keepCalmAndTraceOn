@@ -1,4 +1,5 @@
 #include "../includes/minirt.h"
+#include "../mlx/mlx.h"
 
 static void	parse(char *argv, t_info *info)
 {
@@ -22,14 +23,14 @@ void draw(t_info *info)
     t_color3	colors;
 
     j = 0;
+    cam_setting(info);
     while (j < HEIGHT)
     {
         i = 0;
         while (i < WIDTH)
         {
-            info->ray = ray_primary(info->cam, \
-			(double)i / (WIDTH - 1), \
-			(HEIGHT - 1 - (double)j) / (HEIGHT - 1));
+            info->ray = ray_primary(info, \
+			(double)i / (WIDTH - 1), (HEIGHT - 1 - (double)j) / (HEIGHT - 1));
             colors = ray_color(info->ray, info);
             dst = info->addr + (j * info->size_line + i * 4);
             *(unsigned int *)dst = ((int)(255.999 * colors.x) * 256 * 256) + ((int)(255.999 * colors.y) * 256) + (int)(255.999 * colors.z);
@@ -40,11 +41,19 @@ void draw(t_info *info)
     mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 }
 
-void    ft_execve(t_info *info)
+static int	red_button(t_info *info)
+{
+    mlx_destroy_window(info->mlx, info->win);
+    exit(0);
+}
+
+
+static void    ft_execve(t_info *info)
 {
     mlx_setting(info);
     draw(info);
-    // mlx_hook
+    mlx_hook(info->win, 2, 0, key_press, info);
+    mlx_hook(info->win, 17, 0, red_button, info);
     mlx_loop(info->mlx);
 }
 
@@ -53,7 +62,7 @@ void	mlx_setting(t_info *info)
     info->mlx = mlx_init();
 	if (!info->mlx)
 		ft_error("mlx_init() failed");
-    info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "test1");
+    info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT + 100, "test1");
     if (!info->win)
 		ft_error("mlx_new_window() failed");
 	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
@@ -63,6 +72,11 @@ void	mlx_setting(t_info *info)
 		&info->size_line, &info->endian);
 	if (!info->addr)
 		ft_error("mlx_get_data_addr() failed");
+    print_key_info(info);
+    mlx_string_put(info->mlx, info->win, 20, HEIGHT + 20, 0xFFFFFF, \
+		"C : select camera");
+    mlx_string_put(info->mlx, info->win, 170, HEIGHT + 20, 0xFFFFFF, \
+		"L : select light");
 }
 
 int main(int argc, char **argv)

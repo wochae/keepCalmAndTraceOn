@@ -58,5 +58,5 @@ t_point3	parse_n_vec(char *str)
 		ft_error("wrong input : vector must be -1 ~ 1");
     if (vec.x == 0 && vec.y == 0 && vec.z == 0)
             ft_error("cam must have any dir");
-	return (vec);
+	return (unit(vec));
 }

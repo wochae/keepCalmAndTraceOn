@@ -1,4 +1,5 @@
-#include "../includes/minirt.h"
+#include "minirt.h"
+#include "math.h"
 
 t_point3	point3(double x, double y, double z)
 {
@@ -90,7 +91,7 @@ t_vec3	unit(t_vec3 vec)
     len = vlen(vec);
     if (len == 0)
     {
-        printf("Error: Devider is 0\n");
+        ft_error("Error: Devider is 0\n");
         exit(1);
     }
     new.x = vec.x / len;

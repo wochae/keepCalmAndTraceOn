@@ -2,7 +2,6 @@
 # define STRUCTURES_H
 
 # include "libft.h"
-# include "minirt.h"
 
 # define FALSE 0
 # define TRUE 1
@@ -15,6 +14,7 @@ typedef enum e_obj_type
     AMB = 0x0001,
     CAM = 0x0002,
     LIT = 0x0004,
+    OBJ = 0x0005,
     SPHERE = 0x0008,
     PLANE = 0x0009,
     CYLINDER = 0x000a
@@ -128,10 +128,8 @@ typedef struct s_info
     t_ambient		ambient;
     t_ray			ray;
     t_hit_record	rec;
-
-// void clicked;
-// int clicked_type;
-//
+    void            *clicked;
+    int             clicked_type;
 }	t_info;
 
 #endif
