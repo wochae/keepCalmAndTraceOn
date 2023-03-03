@@ -1,6 +1,4 @@
-#include "libft.h"
-#include "colors.h"
-
+#include "minirt.h"
 void    ft_error(char *msg)
 {
     ft_putstr_fd(RED, 2);

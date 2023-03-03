@@ -1,7 +1,5 @@
 #include "minirt.h"
-#include "key_map.h"
 
-/* 물체 이동 (카메라가 보는 방향 기준에서 이동) */
 void	key_move(void *clicked, int type, t_vec3 dir, int keycode)
 {
     if (type == PLANE)
@@ -10,9 +8,9 @@ void	key_move(void *clicked, int type, t_vec3 dir, int keycode)
         move_sphere((t_sphere *)((t_object *)clicked)->element, dir, keycode);
     if (type == CYLINDER)
         move_cylinder((t_cylinder *)((t_object *)clicked)->element, dir, keycode);
-    if (type == LIT)
+    if (type == LIGHT)
         move_light((t_light *)clicked, dir, keycode);
-    if (type == CAM)
+    if (type == CAMERA)
         move_camera((t_cam *)clicked, keycode);
 }
 
