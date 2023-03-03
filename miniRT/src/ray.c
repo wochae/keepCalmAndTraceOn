@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wochae <wochae@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 16:59:12 by wochae            #+#    #+#             */
+/*   Updated: 2023/03/03 16:59:19 by wochae           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 t_ray	ray_set(t_point3 point, t_vec3 vec)
 {
-	t_ray new;
+	t_ray	new;
 
 	new.origin = point;
 	new.dir = unit(vec);
@@ -19,7 +31,7 @@ t_point3	ray_dest(t_ray ray, double t)
 
 t_ray	ray_primary(t_cam cam, double w, double h)
 {
-	t_ray ray;
+	t_ray	ray;
 
 	ray.origin = cam.origin;
 	ray.dir = plus(cam.left_bottom, mult_t(cam.dir_hor, w));
@@ -29,7 +41,7 @@ t_ray	ray_primary(t_cam cam, double w, double h)
 	return (ray);
 }
 
-t_color3 ray_color(t_ray ray, t_info *info)
+t_color3	ray_color(t_ray ray, t_info *info)
 {
 	info->rec.t_min = EPSILON;
 	info->rec.t_max = INFINITY;

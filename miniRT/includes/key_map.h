@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_map.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wochae <wochae@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 17:13:43 by wochae            #+#    #+#             */
+/*   Updated: 2023/03/03 17:14:08 by wochae           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef KEY_MAP_H
 # define KEY_MAP_H
 
@@ -48,6 +60,7 @@ void	rotate_camera(t_cam *cam, int keycode);
 void	rotate_plane(t_plane *pl, int keycode);
 void	rotate_cylinder(t_cylinder *cy, int keycode);
 
+/* overall */
 void	reverse_color(t_object *obj);
 
 #endif

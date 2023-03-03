@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structures.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiyun <jiyun@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 17:16:50 by jiyun             #+#    #+#             */
+/*   Updated: 2023/03/03 17:25:09 by jiyun            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTURES_H
-#define STRUCTURES_H
+# define STRUCTURES_H
 
 typedef enum e_info_type
 {
@@ -24,9 +36,9 @@ struct s_dot3
 	double	z;
 };
 
-typedef struct s_dot3 t_point3;
-typedef struct s_dot3 t_vec3;
-typedef struct s_dot3 t_color3;
+typedef struct s_dot3	t_point3;
+typedef struct s_dot3	t_vec3;
+typedef struct s_dot3	t_color3;
 
 typedef struct s_ray
 {
@@ -60,7 +72,7 @@ typedef struct s_sphere
 	t_point3	point;
 	t_color3	rgb;
 	double		radius;
-	double 		radius_d;
+	double		radius_d;
 }	t_sphere;
 
 typedef struct s_plane
@@ -70,23 +82,23 @@ typedef struct s_plane
 	t_color3	rgb;
 }	t_plane;
 
-typedef struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_point3	point;
 	t_vec3		dir;
 	t_color3	rgb;
-	double 		radius;
-	double 		radius_d;
-	double 		height;
+	double		radius;
+	double		radius_d;
+	double		height;
 }	t_cylinder;
 
 typedef struct s_hit_record
 {
 	t_point3	hit_point;
-	t_vec3		normal_v;
+	t_vec3		normal;
 	double		t;
 	double		t_min;
-	double 		t_max;
+	double		t_max;
 	double		front_face;
 	t_color3	rgb;
 }	t_hit_record;
@@ -104,6 +116,26 @@ typedef struct s_ambient
 	double		ratio;
 }	t_ambient;
 
+typedef struct s_discriminant
+{
+	double	a;
+	double	b;
+	double	c;
+	double	disc;
+	double	root;
+}	t_discriminant;
+
+typedef struct s_phong_light
+{
+	t_color3	diffuse;
+	double		diff_stren;
+	t_vec3		l_dir;
+	t_vec3		reflect;
+	t_vec3		view;
+	double		similar;
+	t_color3	specular;
+}	t_phong_light;
+
 typedef struct s_info
 {
 	void			*mlx;
@@ -111,8 +143,8 @@ typedef struct s_info
 	void			*img;
 	char			*addr;
 	int				bits_per_pixel;
-	int 			size_line;
-	int 			endian;
+	int				size_line;
+	int				endian;
 	t_cam			cam;
 	t_object		*objects;
 	t_light			light;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_util.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wochae <wochae@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 16:20:51 by wochae            #+#    #+#             */
+/*   Updated: 2023/03/03 16:21:31 by wochae           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	obj_add(t_object **list, t_object *new)
@@ -43,11 +55,11 @@ t_color3	parse_color(char *str)
 	if (color.z < 0 || color.z > 255 || color.y < 0 || color.y > 255 || \
 		color.x < 0 || color.x > 255)
 		ft_error("wrong input : color must be 0 ~ 255");
-    color = (t_color3){color.x / 255.0, color.y / 255.0, color.z / 255.0};
+	color = (t_color3){color.x / 255.0, color.y / 255.0, color.z / 255.0};
 	return (color);
 }
 
-t_point3 parse_pt(char *str)
+t_point3	parse_pt(char *str)
 {
 	char		**pts;
 	t_point3	pt;
@@ -71,7 +83,7 @@ t_point3	parse_n_vec(char *str)
 	if (vec.x < -1 || vec.x > 1 || vec.y < -1 || vec.y > 1 || \
 		vec.z < -1 || vec.z > 1)
 		ft_error("wrong input : vector must be -1 ~ 1");
-    if (vec.x == 0 && vec.y == 0 && vec.z == 0)
-            ft_error("cam must have any dir");
+	if (vec.x == 0 && vec.y == 0 && vec.z == 0)
+		ft_error("cam must have any dir");
 	return (vec);
 }

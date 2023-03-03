@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_rotate.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiyun <jiyun@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 16:31:29 by jiyun             #+#    #+#             */
+/*   Updated: 2023/03/03 16:31:58 by jiyun            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	rotate_camera(t_cam *cam, int keycode)
 {
-    if (keycode == KEY_UP)
-        rotate_obj(&cam->dir, (t_vec3){-ROTATION, 0, 0});
-    if (keycode == KEY_DOWN)
-        rotate_obj(&cam->dir, (t_vec3){ROTATION, 0, 0});
-    if (keycode == KEY_LEFT)
-        rotate_obj(&cam->dir, (t_vec3){0, -ROTATION, 0});
-    if (keycode == KEY_RIGHT)
+	if (keycode == KEY_UP)
+		rotate_obj(&cam->dir, (t_vec3){-ROTATION, 0, 0});
+	if (keycode == KEY_DOWN)
+		rotate_obj(&cam->dir, (t_vec3){ROTATION, 0, 0});
+	if (keycode == KEY_LEFT)
+		rotate_obj(&cam->dir, (t_vec3){0, -ROTATION, 0});
+	if (keycode == KEY_RIGHT)
 		rotate_obj(&cam->dir, (t_vec3){0, ROTATION, 0});
 	if (keycode == KEY_COMMA)
 		rotate_obj(&cam->dir, (t_vec3){0, 0, ROTATION});

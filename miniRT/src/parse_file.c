@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wochae <wochae@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 16:18:52 by wochae            #+#    #+#             */
+/*   Updated: 2023/03/03 16:19:09 by wochae           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 #include <fcntl.h>
 
@@ -40,7 +52,7 @@ void	read_file(char *file, char **content)
 	close(fd);
 }
 
-static void check_dup_info(char *key, int *flag)
+static void	check_dup_info(char *key, int *flag)
 {
 	if (!ft_strcmp(key, "A") && *flag & AMB)
 		ft_error("'A' should be only one");
@@ -97,5 +109,5 @@ void	parse_to_info(char *content, t_info *info)
 		parse_a_line(lines[i], &flag, info);
 	ft_free_strs(lines);
 	if (flag ^ AMB ^ CAM ^ LIT)
-		ft_error("The major factors (A, C, L) are not sufficient.");	
+		ft_error("The major factors (A, C, L) are not sufficient.");
 }

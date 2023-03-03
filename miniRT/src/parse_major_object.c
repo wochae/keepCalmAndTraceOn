@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_major_object.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wochae <wochae@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 16:19:20 by wochae            #+#    #+#             */
+/*   Updated: 2023/03/03 16:19:43 by wochae           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	parse_ambient(char **args, t_info *info)
@@ -29,5 +41,5 @@ void	parse_light(char **args, t_info *info)
 	info->light.ratio = ft_atod(args[2]);
 	if (info->light.ratio < 0 || info->light.ratio > 1)
 		ft_error("wrong input : light ratio must be 0 ~ 1");
-    info->light.amount = color3(1.0, 1.0, 1.0);
+	info->light.amount = color3(1.0, 1.0, 1.0);
 }

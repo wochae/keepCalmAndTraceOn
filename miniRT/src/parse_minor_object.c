@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_minor_object.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wochae <wochae@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/03 16:19:47 by wochae            #+#    #+#             */
+/*   Updated: 2023/03/03 16:20:45 by wochae           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-void    parse_sphere(char **args, t_info *info)
+void	parse_sphere(char **args, t_info *info)
 {
 	t_object	*obj;
 	t_sphere	*new_sp;
@@ -17,8 +29,8 @@ void    parse_sphere(char **args, t_info *info)
 	new_sp->rgb = parse_color(args[3]);
 	obj->element = new_sp;
 	obj->type = SPHERE;
-    obj->next = NULL;
-	    obj_add(&info->objects, obj);
+	obj->next = NULL;
+	obj_add(&info->objects, obj);
 }
 
 void	parse_plane(char **args, t_info *info)
@@ -37,8 +49,8 @@ void	parse_plane(char **args, t_info *info)
 	new_pl->rgb = parse_color(args[3]);
 	obj->element = new_pl;
 	obj->type = PLANE;
-    obj->next = NULL;
-	    obj_add(&info->objects, obj);
+	obj->next = NULL;
+	obj_add(&info->objects, obj);
 }
 
 void	parse_cylinder(char **args, t_info *info)
@@ -60,6 +72,6 @@ void	parse_cylinder(char **args, t_info *info)
 	new_cy->rgb = parse_color(args[5]);
 	obj->type = CYLINDER;
 	obj->element = new_cy;
-    obj->next = NULL;
-        obj_add(&info->objects, obj);
+	obj->next = NULL;
+	obj_add(&info->objects, obj);
 }
