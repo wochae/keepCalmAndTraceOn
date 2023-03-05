@@ -11,6 +11,8 @@ SRCS_FILES = main.c \
 			ray.c \
 			object.c \
 			hit.c \
+			hit_cylinder.c \
+			hit_sphere_plane.c \
 			setting.c \
 			lighting.c \
 			parse_file.c \
