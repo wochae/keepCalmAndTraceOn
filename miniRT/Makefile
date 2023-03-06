@@ -7,7 +7,9 @@ INCLUDES = -I./includes
 
 SRCS = $(addprefix ./src/, ${SRCS_FILES})
 SRCS_FILES = main.c \
-			vector.c \
+			vector1.c \
+			vector2.c \
+			vector3.c \
 			ray.c \
 			object.c \
 			hit.c \

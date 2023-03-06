@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 double	vlen_d(t_vec3 vec)
 {

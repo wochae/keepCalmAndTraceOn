@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 double	dot(t_vec3 vec1, t_vec3 vec2)
 {
